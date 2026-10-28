@@ -1,16 +1,16 @@
-import pyttsx3
 from datetime import datetime
-import utils.Speak as Speak
 
-def greet():
-        # Time
-    time_hour = datetime.now().hour
-    if (time_hour >= 0 or time_hour <= 12):
-        Speak.speak("Good Morning! How may I help you?")
 
-    elif (time_hour > 12 or time_hour <= 5):
-        Speak.speak("Good Afternoon! How may I help you?")
-
+def greeting_text() -> str:
+    hour = datetime.now().hour
+    if hour < 12:
+        part = "Good Morning"
+    elif hour < 17:
+        part = "Good Afternoon"
     else:
-        Speak.speak("Good Evening! How may I help you?")
+        part = "Good Evening"
+    return f"{part}! I'm your voice assistant. How may I help you?"
 
+
+def greet(speak):
+    speak(greeting_text())
